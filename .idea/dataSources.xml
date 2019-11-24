@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="hotdog@localhost" uuid="ce1d5e9d-9561-49fb-b0b6-8b9f3cef23f7">
+    <data-source source="LOCAL" name="hotdog_team2@localhost" uuid="f4f3ec75-e54c-44f3-9f77-0db0cd1fa117">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/hotdog</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/hotdog_team2</jdbc-url>
     </data-source>
   </component>
 </project>
