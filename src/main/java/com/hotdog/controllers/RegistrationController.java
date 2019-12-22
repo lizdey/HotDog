@@ -1,12 +1,11 @@
-package com.example;
-import com.example.domain.Role;
-import com.example.domain.User;
-import com.example.domain.UserRepo;
+package com.hotdog.controllers;
+import com.hotdog.entities.Role;
+import com.hotdog.entities.User;
+import com.hotdog.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.ui.Model;
 
 import java.util.Collections;
 import java.util.Map;
@@ -23,16 +22,12 @@ public class RegistrationController {
 
     @PostMapping("/registration")
     public String addUser(User user, Map<String, Object> model){
-        User userFromDb = userRepo.findByUsername(user.getUsername());
-
-        if (userFromDb != null){
-            model.put("message", "User exists!");
-            return "registration";
-        }
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
+
         userRepo.save(user);
+
 
         return "redirect:/login";
     }

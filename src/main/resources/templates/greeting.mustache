@@ -1,11 +1,162 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <style>
+        .button {
+            background-color: #4CAF50;
+            position: relative;
+            left: 830px;
+            bottom: auto;
+            top: auto;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+
+        .header {
+            background-color: #2ef176;
+            padding: 7px;
+            text-align: center;
+        }
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        /* Style the topnav links */
+        .topnav a {
+            float: left;
+            display: inline;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 14px;
+            text-decoration: none;
+        }
+
+        /* Change color on hover */
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .column {
+            float: left;
+            padding: 10px;
+
+        }
+
+        /* Left and right column */
+        .column.side {
+            width: 20%;
+            background-color: #e5ffea;
+        }
+
+        /* Middle column */
+        .column.middle {
+            width: 75%;
+            background-color: #f4fff0;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        @media screen and (max-width: 1360px) {
+            .column.side, .column.middle {
+                width: 100%;
+            }
+        }
+
+        .gallery{
+            padding: 20px 20px;
+            border: 2px solid #e1e1e1;
+            border-radius: 5px;
+
+
+        }
+        .name{
+            padding: 5px 5px;
+            font-size: 20px;
+            font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
+            background-color: #dcefff;
+        }
+
+
+    </style>
+
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<div>Hello, user</div>
-<a href="/main">Main Page</a>
-</body>
+<div class="header">
+
+    <h1>
+        Какое-нибудь приветствие!
+    </h1>
+</div>
+
+<div class="topnav">
+    <a href="#">Ссылка куда-то</a>
+    <a href="#">Другая ссылка</a>
+    <a href="#">И еще одна</a>
+    <a href="/login" class="button">Login/Sign Up</a>
+</div>
+
+<div class="row">
+
+    <div class="column middle">
+        <h2>Здесь должны быть посты</h2>
+
+        <div class="gallery">
+            <div class="name">
+                <p>Первый кот</p>
+            </div>
+
+            <a target="_blank" href="img/cat1.jpg">
+                <img src="img/cat1.jpg" alt="cat1" width="400">
+            </a>
+
+        </div>
+
+        <div class="gallery">
+            <div class="name">
+                <p>И еще</p>
+            </div>
+
+            <a target="_blank" href="img/cat2.jpg">
+                <img src="img/cat2.jpg" alt="cat2" width="400">
+            </a>
+
+        </div>
+
+        <div class="gallery">
+            <div class="name">
+                <p>И еще</p>
+            </div>
+
+            <a target="_blank" href="img/cat3.jpg">
+                <img src="img/cat3.jpg" alt="cat3" width="400">
+            </a>
+
+        </div>
+
+
+
+
+    </div>
+
+    <div class="column side">
+        <h2>Боковая панель</h2>
+        <p> А здесь реклама конечно</p>
+    </div>
+</div>
 </html>

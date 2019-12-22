@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Spring Security Example </title>
+
     <style>
         input[type=text], select {
             width: 40%;
@@ -43,40 +43,30 @@
             font-size: 18px;
         }
 
+
     </style>
 
 </head>
+
 <body>
-
-{{#message}}
-    {{message}}
-{{/message}}
-
-<!--<form action="/registration" method="post">-->
-<!--    <div><label> User Name : <input type="text" name="username"/> </label></div>-->
-<!--    <div><label> Password: <input type="password" name="password"/> </label></div>-->
-<!--    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>-->
-<!--    <div><input type="submit" value="Sign In"/></div>-->
-<!--</form>-->
 
 <div>
 
-    <form action="/registration" method="post">
-        <label for="username">Username</label>
-        <input type="text"  name="username">
+    <form action="/posts" method="post">
 
-        <label for="password">Password</label>
-        <input type="text" name="password">
+        <label for="postName">Post name</label>
+        <input type="text"  name="postName">
 
-        <label for="email">E-mail</label>
-        <input type="text" name="email">
 
-        <label for="fullName">Full Name</label>
-        <input type="text" name="fullName">
+        <label for="postText">Post text</label>
+        <input type="text"  name="postText">
+
+
+
 
         <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
 
-        <input type="submit" value="Register">
+        <input type="submit" value="Create Post">
 
     </form>
 </div>

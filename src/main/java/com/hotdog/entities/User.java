@@ -1,6 +1,4 @@
-package com.example.domain;
-
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+package com.hotdog.entities;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,7 +11,12 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    private String email;
+    private String fullName;
     private boolean active;
+
+     protected User() {
+    }
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "id_user"))
@@ -44,6 +47,22 @@ public class User {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
     public boolean isActive() {
         return active;
     }
@@ -60,6 +79,5 @@ public class User {
         this.roles = roles;
     }
 
-
-    }
+}
 
