@@ -14,6 +14,9 @@ public class Posts {
     private String postName;
     @NotNull
     private String postText;
+
+    @NotNull
+    private String imgName;
     @CreationTimestamp
     private LocalDateTime timeStamp;
 
@@ -49,6 +52,14 @@ public class Posts {
 
     public void setPostText(String postText) {
         this.postText = postText;
+    }
+
+    public String getImgName() {
+        return imgName;
+    }
+
+    public void setImgName(String imgName) {
+        this.imgName = imgName;
     }
 
 }
