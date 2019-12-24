@@ -52,23 +52,36 @@
 
 <div>
 
-    <form action="/posts" method="post">
+    <form action="/posts" method="post" enctype="multipart/form-data">
 
-        <label for="postName">Post name</label>
-        <input type="text"  name="postName">
-
-
-        <label for="postText">Post text</label>
-        <input type="text"  name="postText">
+        <label for="pstName">Post name</label>
+        <input type="text"  name="pstName">
 
 
+        <label for="pstText">Post text</label>
+        <input type="text"  name="pstText">
 
+        <label>Image</label>
+        <input type="file" name="file">
 
         <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
 
         <input type="submit" value="Create Post">
 
     </form>
+
 </div>
+
+{{#ps}}
+    <div>
+        <b>{{postId}}</b>
+        <b>{{postName}}</b>
+        <b>{{postText}}</b>
+        <b>{{timeStamp}}</b>
+
+
+    </div>
+{{/ps}}
+
 </body>
 </html>

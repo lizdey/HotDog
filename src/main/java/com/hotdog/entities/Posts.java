@@ -1,12 +1,8 @@
 package com.hotdog.entities;
-
-
 import org.hibernate.annotations.CreationTimestamp;
-
 import javax.persistence.*;
-
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-
 
 @Entity
 @Table(name = "pst")
@@ -14,13 +10,14 @@ public class Posts {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int postId;
-
+    @NotNull
     private String postName;
+    @NotNull
     private String postText;
     @CreationTimestamp
     private LocalDateTime timeStamp;
 
-    protected Posts() {}
+    public Posts() {}
 
     public LocalDateTime getTimeStamp() {
         return timeStamp;
@@ -55,3 +52,4 @@ public class Posts {
     }
 
 }
+
