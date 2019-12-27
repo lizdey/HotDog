@@ -39,6 +39,9 @@
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             <button type="submit" class="btn btn-primary">Log In</button>
         </form>
+
+        <a href="/registration" class="btn btn-primary mt-2" role="button">Create a new account</a>
+
     </div>
 </#macro>
 
