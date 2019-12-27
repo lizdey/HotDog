@@ -2,9 +2,11 @@ package com.hotdog.controllers;
 
 
 import com.hotdog.entities.Posts;
+import com.hotdog.entities.User;
 import com.hotdog.repositories.PostsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,14 +20,12 @@ import java.util.UUID;
 @Controller
 public class PostsController {
 
-    @Autowired
-    private PostsRepo postsRepo;
+    private final PostsRepo postsRepo;
 
-//    @GetMapping("posts/all")
-//    public @ResponseBody Iterable<Posts> getAllPosts() {
-//
-//        return postsRepo.findAll();
-//    }
+    public PostsController(PostsRepo postsRepo) {
+        this.postsRepo = postsRepo;
+    }
+
     @Value("${upload.path}")
     private String uploadPath;
 
@@ -45,6 +45,7 @@ public class PostsController {
     public String add(@RequestParam String pstName,
                       @RequestParam String pstText,
                       @RequestParam("file") MultipartFile file,
+                      @AuthenticationPrincipal User user,
                       Map<String, Object> model) throws IOException {
         Posts p = new Posts();
 
@@ -64,13 +65,11 @@ public class PostsController {
 
         p.setPostName(pstName);
         p.setPostText(pstText);
+        p.setAuthor(user);
 
         postsRepo.save(p);
 
         return "redirect:/posts/all";
     }
-
-
-
 
 }

@@ -20,7 +20,23 @@ public class Posts {
     @CreationTimestamp
     private LocalDateTime timeStamp;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
+
     public Posts() {}
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public String getAuthorName(){
+        return author != null ? author.getUsername() : "<none>";
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
 
     public LocalDateTime getTimeStamp() {
         return timeStamp;
