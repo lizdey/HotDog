@@ -22,6 +22,16 @@ public class User implements UserDetails {
     public User() {
     }
 
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Posts> postsSet;
+
+    public Set<Posts> getPostsSet() {
+        return postsSet;
+    }
+
+    public void setPostsSet(Set<Posts> postsSet) {
+        this.postsSet = postsSet;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

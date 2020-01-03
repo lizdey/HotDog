@@ -20,8 +20,11 @@
                     </li>
                     <#if known>
                         <li class="nav-item">
-                        <a class="nav-link" href="/posts">New Post</a>
-                    </li>
+                            <a class="nav-link" href="/posts">New Post</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user-posts/${currentUserId}">My posts</a>
+                        </li>
                     </#if>
 
                 </ul>
@@ -32,7 +35,7 @@
                     <div class="navbar-text mx-auto d-block">Logged-in as: ${name}</div>
                 </div>
                 <div class="col-sm-2">
-                    <form action="logout" method="post">
+                    <form action="/logout" method="post">
                         <input type="hidden" name="_csrf" value="${_csrf.token}" />
                         <button type="submit" class="btn btn-outline-secondary mx-auto d-block">Log out</button>
                     </form>
