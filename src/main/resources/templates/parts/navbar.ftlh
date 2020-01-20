@@ -48,7 +48,6 @@
                     <a href="/login" class="btn btn-outline-secondary mx-auto d-block" role="button">Login/Register</a>
                 </div>
             </#if>
-
         </div>
     </nav>
 </#macro>
