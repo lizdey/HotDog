@@ -2,7 +2,12 @@ package com.hotdog.entities;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.text.DateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "pst")
@@ -24,6 +29,18 @@ public class Posts {
     @JoinColumn(name = "user_id")
     private User author;
 
+    public Set<Tags> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tags> tags) {
+        this.tags = tags;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "posts")
+    private Set<Tags> tags = new HashSet<>();
+
+
     public Posts() {}
 
     public User getAuthor() {
@@ -39,7 +56,7 @@ public class Posts {
     }
 
     public LocalDateTime getTimeStamp() {
-        return timeStamp;
+        return timeStamp.truncatedTo(ChronoUnit.MINUTES);
     }
 
     public void setTimeStamp(LocalDateTime timeStamp) {

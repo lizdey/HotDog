@@ -2,29 +2,38 @@ package com.hotdog.controllers;
 
 
 import com.hotdog.entities.Posts;
+import com.hotdog.entities.Tags;
 import com.hotdog.entities.User;
 import com.hotdog.repositories.PostsRepo;
+import com.hotdog.repositories.TagsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+import java.util.function.Consumer;
 
 @Controller
 public class PostsController {
 
     private final PostsRepo postsRepo;
+    private final TagsRepo tagsRepo;
 
-    public PostsController(PostsRepo postsRepo) {
+
+    public PostsController(PostsRepo postsRepo, TagsRepo tagsRepo) {
         this.postsRepo = postsRepo;
+        this.tagsRepo = tagsRepo;
     }
+
+
+
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -32,7 +41,11 @@ public class PostsController {
     @GetMapping(path = "posts/all")
     public String allPosts(Map<String, Object> model){
         Iterable<Posts> allPosts = postsRepo.findAll();
+        Iterable<Tags> allTags = tagsRepo.findAll();
+
+
         model.put("ps", allPosts);
+        model.put("postTags", allTags);
         return "posts/all";
     }
 
@@ -46,8 +59,12 @@ public class PostsController {
                       @RequestParam String pstText,
                       @RequestParam("file") MultipartFile file,
                       @AuthenticationPrincipal User user,
-                      Map<String, Object> model) throws IOException {
+                      @RequestParam String tagStr
+    ) throws IOException {
+
         Posts p = new Posts();
+
+
 
         if(file != null){
             File uploadDir = new File(uploadPath);
@@ -67,7 +84,16 @@ public class PostsController {
         p.setPostText(pstText);
         p.setAuthor(user);
 
-        postsRepo.save(p);
+        String[] splitTags = tagStr.split(",");
+
+
+        for (String tempSplitTags : splitTags){
+            Tags tags = new Tags(tempSplitTags);
+            p.getTags().add(tags);
+            tags.getPosts().add(p);
+            tagsRepo.save(tags);
+            postsRepo.save(p);
+        }
 
         return "redirect:/posts/all";
     }
